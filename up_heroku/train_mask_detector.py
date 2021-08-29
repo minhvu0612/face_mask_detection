@@ -55,7 +55,7 @@ labels = np.array(labels)
 (trainX, testX, trainY, testY) = train_test_split(data, labels,
 	test_size=0.20, stratify=labels, random_state=42)
 
-# construct the training image generator for data augmentation
+
 aug = ImageDataGenerator(
 	rotation_range=20,
 	zoom_range=0.15,
@@ -99,7 +99,7 @@ H = model.fit(
 	validation_steps=len(testX) // BS,
 	epochs=EPOCHS)
 
-# predictions on the testing set
+# predictions
 print("[INFO] evaluating network...")
 predIdxs = model.predict(testX, batch_size=BS)
 
@@ -114,7 +114,7 @@ print(classification_report(testY.argmax(axis=1), predIdxs,
 print("[INFO] saving mask detector model...")
 model.save("mask_detector.model", save_format="h5")
 
-# plot the training loss and accuracy
+# plot training loss and accuracy
 N = EPOCHS
 plt.style.use("ggplot")
 plt.figure()
